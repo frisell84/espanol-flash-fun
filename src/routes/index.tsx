@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { words, categories, type Word } from "@/data/words";
+import { useAmbientMusic } from "@/hooks/use-ambient-music";
 
 export const Route = createFileRoute("/")({
   head: () => ({
