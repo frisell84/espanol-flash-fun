@@ -64,6 +64,11 @@ function Index() {
   const card = deck[i];
   const done = deck.length > 0 && i >= deck.length;
 
+  useEffect(() => {
+    if (autoSpeak && card) speak(card.es, "es-ES");
+  }, [autoSpeak, card, speak]);
+
+
   function next(ok: boolean) {
     if (ok) setKnown((n) => n + 1);
     else setReview((n) => n + 1);
