@@ -182,7 +182,7 @@ function Index() {
                 onClick={() => next(true)}
                 className="rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-105"
               >
-                ✓ Kunde
+                Nästa
               </button>
             </div>
 
