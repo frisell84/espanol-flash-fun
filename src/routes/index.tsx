@@ -45,6 +45,8 @@ function Index() {
   const [review, setReview] = useState(0);
   const [esFirst, setEsFirst] = useState(true);
   const { playing, toggle } = useAmbientMusic();
+  const { supported: speechOk, speak } = useSpeech();
+  const [autoSpeak, setAutoSpeak] = useState(false);
 
   const pool = useMemo(
     () => (category === ALL ? words : words.filter((w) => w.cat === category)),
