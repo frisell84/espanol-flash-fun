@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { words, categories, type Word } from "@/data/words";
 import { useAmbientMusic } from "@/hooks/use-ambient-music";
+import { useSpeech } from "@/hooks/use-speech";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,6 +45,8 @@ function Index() {
   const [review, setReview] = useState(0);
   const [esFirst, setEsFirst] = useState(true);
   const { playing, toggle } = useAmbientMusic();
+  const { supported: speechOk, speak } = useSpeech();
+  const [autoSpeak, setAutoSpeak] = useState(false);
 
   const pool = useMemo(
     () => (category === ALL ? words : words.filter((w) => w.cat === category)),
@@ -60,6 +63,11 @@ function Index() {
 
   const card = deck[i];
   const done = deck.length > 0 && i >= deck.length;
+
+  useEffect(() => {
+    if (autoSpeak && card) speak(card.es, "es-ES");
+  }, [autoSpeak, card, speak]);
+
 
   function next(ok: boolean) {
     if (ok) setKnown((n) => n + 1);
@@ -163,7 +171,19 @@ function Index() {
                   <p className="font-display mt-4 text-5xl leading-tight sm:text-6xl">
                     {esFirst ? card.es : card.sv}
                   </p>
-                  <span className="mt-6 text-xs text-muted-foreground">{card.cat}</span>
+                  {speechOk && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        speak(card.es, "es-ES");
+                      }}
+                      aria-label="Hör uttalet på spanska"
+                      className="mt-4 rounded-full border border-border px-4 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground"
+                    >
+                      🔈 Uttal
+                    </button>
+                  )}
+                  <span className="mt-4 text-xs text-muted-foreground">{card.cat}</span>
                 </div>
                 <div className="card-face card-back">
                   <span className="text-[0.65rem] uppercase tracking-[0.3em] opacity-70">
@@ -172,10 +192,24 @@ function Index() {
                   <p className="font-display mt-4 text-5xl leading-tight sm:text-6xl">
                     {esFirst ? card.sv : card.es}
                   </p>
-                  <span className="mt-6 text-xs opacity-70">Tryck för att vända</span>
+                  {speechOk && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        speak(card.es, "es-ES");
+                      }}
+                      aria-label="Hör uttalet på spanska"
+                      className="mt-4 rounded-full border border-current/30 px-4 py-1.5 text-xs opacity-80 transition-opacity hover:opacity-100"
+                    >
+                      🔈 Uttal
+                    </button>
+                  )}
+                  <span className="mt-4 text-xs opacity-70">Tryck för att vända</span>
                 </div>
               </div>
             </div>
+
+
 
             <div className="mt-7 flex items-center justify-center gap-3">
               <button
@@ -205,6 +239,14 @@ function Index() {
               <button onClick={restart} className="underline-offset-4 hover:underline">
                 Blanda om
               </button>
+              {speechOk && (
+                <button
+                  onClick={() => setAutoSpeak((v) => !v)}
+                  className="underline-offset-4 hover:underline"
+                >
+                  Auto-uttal: {autoSpeak ? "på" : "av"}
+                </button>
+              )}
             </div>
           </>
         )
