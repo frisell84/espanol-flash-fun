@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { words, categories, type Word } from "@/data/words";
+import { useAmbientMusic } from "@/hooks/use-ambient-music";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,6 +43,7 @@ function Index() {
   const [known, setKnown] = useState(0);
   const [review, setReview] = useState(0);
   const [esFirst, setEsFirst] = useState(true);
+  const { playing, toggle } = useAmbientMusic();
 
   const pool = useMemo(
     () => (category === ALL ? words : words.filter((w) => w.cat === category)),
@@ -79,9 +81,19 @@ function Index() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-5 py-10">
       <header className="text-center">
-        <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
-          Español · Nivå A1
-        </p>
+        <div className="flex items-center justify-center gap-3">
+          <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
+            Español · Nivå A1
+          </p>
+          <button
+            onClick={toggle}
+            aria-label={playing ? "Stäng av musik" : "Spela musik"}
+            className="rounded-full border border-border bg-card p-2 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+            title={playing ? "Stäng av musik" : "Spela lugn musik"}
+          >
+            {playing ? "🔊" : "🔇"}
+          </button>
+        </div>
         <h1 className="mt-3 text-5xl leading-none text-foreground sm:text-6xl">
           Flashkort <span className="text-primary">Spanska</span>
         </h1>
