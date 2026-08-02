@@ -47,7 +47,7 @@ export function useAmbientMusic() {
 
     const playChord = () => {
       const now = ctx.currentTime;
-      const chord = CHORDS[chordIndex];
+      const chord = CHORDS[chordIndex]!;
       chordIndex = (chordIndex + 1) % CHORDS.length;
 
       chord.forEach((freq, i) => {
