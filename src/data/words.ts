@@ -616,8 +616,8 @@ const raw: Record<string, string[]> = {
 
 export const words: Word[] = Object.entries(raw).flatMap(([cat, list]) =>
   list.map((line) => {
-    const [es, sv] = line.split("|");
-    return { es, sv, cat };
+    const parts = line.split("|");
+    return { es: parts[0] ?? "", sv: parts[1] ?? "", cat };
   }),
 );
 
