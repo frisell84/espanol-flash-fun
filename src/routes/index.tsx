@@ -43,6 +43,7 @@ function Index() {
   const [known, setKnown] = useState(0);
   const [review, setReview] = useState(0);
   const [esFirst, setEsFirst] = useState(true);
+  const { playing, toggle } = useAmbientMusic();
 
   const pool = useMemo(
     () => (category === ALL ? words : words.filter((w) => w.cat === category)),
