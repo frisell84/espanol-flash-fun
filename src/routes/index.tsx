@@ -204,7 +204,7 @@ function Index() {
               </div>
             </div>
 
-            </div>
+
 
             <div className="mt-7 flex items-center justify-center gap-3">
               <button
