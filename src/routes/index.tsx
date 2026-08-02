@@ -166,7 +166,19 @@ function Index() {
                   <p className="font-display mt-4 text-5xl leading-tight sm:text-6xl">
                     {esFirst ? card.es : card.sv}
                   </p>
-                  <span className="mt-6 text-xs text-muted-foreground">{card.cat}</span>
+                  {speechOk && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        speak(card.es, "es-ES");
+                      }}
+                      aria-label="Hör uttalet på spanska"
+                      className="mt-4 rounded-full border border-border px-4 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground"
+                    >
+                      🔈 Uttal
+                    </button>
+                  )}
+                  <span className="mt-4 text-xs text-muted-foreground">{card.cat}</span>
                 </div>
                 <div className="card-face card-back">
                   <span className="text-[0.65rem] uppercase tracking-[0.3em] opacity-70">
@@ -175,9 +187,23 @@ function Index() {
                   <p className="font-display mt-4 text-5xl leading-tight sm:text-6xl">
                     {esFirst ? card.sv : card.es}
                   </p>
-                  <span className="mt-6 text-xs opacity-70">Tryck för att vända</span>
+                  {speechOk && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        speak(card.es, "es-ES");
+                      }}
+                      aria-label="Hör uttalet på spanska"
+                      className="mt-4 rounded-full border border-current/30 px-4 py-1.5 text-xs opacity-80 transition-opacity hover:opacity-100"
+                    >
+                      🔈 Uttal
+                    </button>
+                  )}
+                  <span className="mt-4 text-xs opacity-70">Tryck för att vända</span>
                 </div>
               </div>
+            </div>
+
             </div>
 
             <div className="mt-7 flex items-center justify-center gap-3">
