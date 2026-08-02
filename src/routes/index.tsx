@@ -12,10 +12,10 @@ export const Route = createFileRoute("/")({
         content:
           "Lär dig spanska med vackra flashkort. Över 500 vanliga nybörjarord i 13 kategorier, med progress och repetition.",
       },
-      { property: "og:title", content: "Flashkort Spanska – 500 vanliga ord" },
+      { property: "og:title", content: "Flashkort Spanska – 500 vanliga ord för nybörjare" },
       {
         property: "og:description",
-        content: "Vänd korten, lär dig 500 vanliga spanska ord med svensk översättning.",
+        content: "Lär dig spanska med vackra flashkort. Över 500 vanliga nybörjarord i 13 kategorier, med progress och repetition.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
