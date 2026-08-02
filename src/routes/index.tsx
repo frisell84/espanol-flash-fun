@@ -234,6 +234,14 @@ function Index() {
               <button onClick={restart} className="underline-offset-4 hover:underline">
                 Blanda om
               </button>
+              {speechOk && (
+                <button
+                  onClick={() => setAutoSpeak((v) => !v)}
+                  className="underline-offset-4 hover:underline"
+                >
+                  Auto-uttal: {autoSpeak ? "på" : "av"}
+                </button>
+              )}
             </div>
           </>
         )
