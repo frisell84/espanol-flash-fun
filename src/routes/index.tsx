@@ -7,16 +7,16 @@ import { useSpeech } from "@/hooks/use-speech";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Flashkort Spanska – 500 vanliga ord för nybörjare" },
+      { title: "Flashkort Spanska – 586 vanliga ord för nybörjare" },
       {
         name: "description",
         content:
-          "Lär dig spanska med vackra flashkort. Över 500 vanliga nybörjarord i 13 kategorier, med progress och repetition.",
+          "Lär dig spanska med vackra flashkort. 586 vanliga nybörjarord i 12 kategorier, med progress och repetition.",
       },
-      { property: "og:title", content: "Flashkort Spanska – 500 vanliga ord för nybörjare" },
+      { property: "og:title", content: "Flashkort Spanska – 586 vanliga ord för nybörjare" },
       {
         property: "og:description",
-        content: "Lär dig spanska med vackra flashkort. Över 500 vanliga nybörjarord i 13 kategorier, med progress och repetition.",
+        content: "Lär dig spanska med vackra flashkort. 586 vanliga nybörjarord i 12 kategorier, med progress och repetition.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
